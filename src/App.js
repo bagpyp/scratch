@@ -1,53 +1,23 @@
-import React, { useState } from 'react'
-import './style.css'
+import React from 'react'
 
-const LoadingButton = (props) => {
-  return (
-    <button
-      onClick={props.onClick}
-      type="button"
-    >
-      {props.loading ? (
-        <div className="loader" />
-      ) : (
-        props.label
-      )}
-    </button>
-  )
-}
-
-// Alternative
-// const LoadingButton = (props) => {
-//   const { onClick, loading, label } = props;
-//   return (
-//     <button onClick={onClick} type="button">
-//       {loading ? <div className="loader" /> : label}
-//     </button>
-//   );
-// };
-
-// Alternative
-// const LoadingButton = ({ onClick, loading, label }) => {
-//   return (
-//     <button onClick={onClick} type="button">
-//       {loading ? <div className="loader" /> : label}
-//     </button>
-//   );
-// };
+const data = [
+  { id: 1, name: 'Fido 🐕' },
+  { id: 2, name: 'Snowball 🐈' },
+  { id: 3, name: 'Murphy 🐈‍⬛' },
+  { id: 4, name: 'Zelda 🐈' }
+]
 
 function App() {
-  const [isLoading, setIsLoading] =
-    useState(false)
-
   return (
     <>
-      <LoadingButton
-        label="Press me"
-        loading={isLoading}
-        onClick={() =>
-          setIsLoading(!isLoading)
-        }
-      />
+      <ul>
+        {data &&
+          data.map(({ id, name }) => {
+            return (
+              <li key={id}>{name}</li>
+            )
+          })}
+      </ul>
     </>
   )
 }
