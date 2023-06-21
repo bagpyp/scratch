@@ -1,28 +1,27 @@
-import React from 'react'
+import React, { useState } from 'react'
 
-function Events23() {
-  // first class object
-  const clickHandler = (e, foo) => {
-    console.log(e, foo)
-  }
+function Stateful() {
+  const [count, setCount] = useState(0)
 
   return (
-    <ChildOfEvents
-      onClick={(e) => clickHandler(e, 23)}
-    />
-  )
-}
+    <>
+      <p>{count}</p>
 
-function ChildOfEvents({ onClick }) {
-  return (
-    <button onClick={onClick}>+</button>
+      <button
+        onClick={() => {
+          setCount(count + 1)
+        }}
+      >
+        +
+      </button>
+    </>
   )
 }
 
 function App() {
   return (
     <>
-      <Events23 />
+      <Stateful />
     </>
   )
 }
