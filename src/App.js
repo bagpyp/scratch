@@ -1,24 +1,28 @@
 import React from 'react'
 
-function Events() {
+function Events23() {
   // first class object
   const clickHandler = (e, foo) => {
-    console.log(e)
+    console.log(e, foo)
   }
 
   return (
-    <button
+    <ChildOfEvents
       onClick={(e) => clickHandler(e, 23)}
-    >
-      Click
-    </button>
+    />
+  )
+}
+
+function ChildOfEvents({ onClick }) {
+  return (
+    <button onClick={onClick}>+</button>
   )
 }
 
 function App() {
   return (
     <>
-      <Events />
+      <Events23 />
     </>
   )
 }
