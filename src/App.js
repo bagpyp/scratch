@@ -1,24 +1,37 @@
-import React, { useState } from 'react'
+import React, { useReducer } from 'react'
 
-function StatefulBob() {
-  const [state, setState] = useState({
-    count: 0,
-    user: 'Bob'
-  })
+const initialState = { count: 0 }
 
-  const handleClick = () => {
-    setState({
-      ...state,
-      count: state.count + 1
-    })
+function reducer(state, action) {
+  switch (action.type) {
+    case 'increment':
+      return { count: state.count + 1 }
+    case 'decrement':
+      return { count: state.count - 1 }
   }
+}
+
+function Stateful() {
+  const [state, dispatch] = useReducer(
+    reducer,
+    initialState
+  )
 
   return (
     <>
-      <h1>{state.user}</h1>
-      <p>{state.count}</p>
-
-      <button onClick={handleClick}>
+      Count: {state.count}
+      <button
+        onClick={() =>
+          dispatch({ type: 'decrement' })
+        }
+      >
+        -
+      </button>
+      <button
+        onClick={() =>
+          dispatch({ type: 'increment' })
+        }
+      >
         +
       </button>
     </>
@@ -28,7 +41,7 @@ function StatefulBob() {
 function App() {
   return (
     <>
-      <StatefulBob />
+      <Stateful />
     </>
   )
 }
