@@ -1,17 +1,24 @@
 import React, { useState } from 'react'
 
-function Stateful() {
-  const [count, setCount] = useState(0)
+function StatefulBob() {
+  const [state, setState] = useState({
+    count: 0,
+    user: 'Bob'
+  })
+
+  const handleClick = () => {
+    setState({
+      ...state,
+      count: state.count + 1
+    })
+  }
 
   return (
     <>
-      <p>{count}</p>
+      <h1>{state.user}</h1>
+      <p>{state.count}</p>
 
-      <button
-        onClick={() => {
-          setCount(count + 1)
-        }}
-      >
+      <button onClick={handleClick}>
         +
       </button>
     </>
@@ -21,7 +28,7 @@ function Stateful() {
 function App() {
   return (
     <>
-      <Stateful />
+      <StatefulBob />
     </>
   )
 }
