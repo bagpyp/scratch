@@ -1,38 +1,22 @@
-import React, {
-  useEffect,
-  useState
-} from 'react'
+import React, { useState } from 'react'
 
-class LifecycleClass extends React.Component {
-  componentDidMount() {
-    // Initialize
-  }
-
-  componentDidUpdate() {
-    // Updated
-  }
-
-  componentWillUnmount() {
-    // Removed
-  }
+function PropDrilling() {
+  const [count] = useState(0)
+  return <Child count={count} />
 }
 
-const Lifecycle = () => {
-  const [count] = useState(0)
+function Child({ count }) {
+  return <Grandchild count={count} />
+}
 
-  // Code run in response to a lifecycle event is called a "side effect"
-  useEffect(() => {
-    console.log('hi!')
-    return () => console.log('destroyed!')
-  }, [
-    count // empty dep array means run on mount only
-  ])
+function Grandchild({ count }) {
+  return <div>{count}</div>
 }
 
 function App() {
   return (
     <>
-      <Lifecycle />
+      <PropDrilling />
     </>
   )
 }
