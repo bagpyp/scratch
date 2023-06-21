@@ -1,23 +1,24 @@
 import React from 'react'
 
-const data = [
-  { id: 1, name: 'Fido 🐕' },
-  { id: 2, name: 'Snowball 🐈' },
-  { id: 3, name: 'Murphy 🐈‍⬛' },
-  { id: 4, name: 'Zelda 🐈' }
-]
+function Events() {
+  // first class object
+  const clickHandler = (e, foo) => {
+    console.log(e)
+  }
+
+  return (
+    <button
+      onClick={(e) => clickHandler(e, 23)}
+    >
+      Click
+    </button>
+  )
+}
 
 function App() {
   return (
     <>
-      <ul>
-        {data &&
-          data.map(({ id, name }) => {
-            return (
-              <li key={id}>{name}</li>
-            )
-          })}
-      </ul>
+      <Events />
     </>
   )
 }
