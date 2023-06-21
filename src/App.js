@@ -1,34 +1,55 @@
-import './App.css'
+import React, { useState } from 'react'
+import './style.css'
 
-export default function App() {
+const LoadingButton = (props) => {
   return (
-    <div className="App">
-      <MyComponent2
-        name="robbie"
-        bio={{ age: 69 }}
-        icon={<MyComponent />}
-      />
-    </div>
+    <button
+      onClick={props.onClick}
+      type="button"
+    >
+      {props.loading ? (
+        <div className="loader" />
+      ) : (
+        props.label
+      )}
+    </button>
   )
 }
 
-function MyComponent({ name, icon }) {
+// Alternative
+// const LoadingButton = (props) => {
+//   const { onClick, loading, label } = props;
+//   return (
+//     <button onClick={onClick} type="button">
+//       {loading ? <div className="loader" /> : label}
+//     </button>
+//   );
+// };
+
+// Alternative
+// const LoadingButton = ({ onClick, loading, label }) => {
+//   return (
+//     <button onClick={onClick} type="button">
+//       {loading ? <div className="loader" /> : label}
+//     </button>
+//   );
+// };
+
+function App() {
+  const [isLoading, setIsLoading] =
+    useState(false)
+
   return (
     <>
-      {icon}
-      <h1>{name}</h1>
+      <LoadingButton
+        label="Press me"
+        loading={isLoading}
+        onClick={() =>
+          setIsLoading(!isLoading)
+        }
+      />
     </>
   )
 }
 
-const MyComponent2 = () => {
-  return <p>hi</p>
-}
-
-function Card(props) {
-  return (
-    <div className="card">
-      {props.children}
-    </div>
-  )
-}
+export default App
